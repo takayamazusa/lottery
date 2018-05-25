@@ -4,6 +4,8 @@
 #include "stdafx.h"
 #include "stdio.h"
 #include"stdlib.h"
+#include <time.h>
+
 
 static int all; //抽選に参加する人数
 static int winner; //当選する人数
@@ -81,7 +83,9 @@ void lottery(int all, int winner) {
 
 	int a[100] = { 0 };             //0で初期化した大きな配列をつくる
 
-	for (i = 0; i < winner;i++ ) {  //当選予定人数分、乱数であたりを出す
+	for (win = 1; win <= winner;) {  //当選予定人数分、乱数であたりを出す
+
+		srand(time(NULL));
 
 		int num = rand() % all + 1; //当選者の番号を乱数で決定、乱数を入れる変数をnumとする
 
