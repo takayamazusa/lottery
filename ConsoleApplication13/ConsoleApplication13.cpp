@@ -77,7 +77,7 @@ int WinnerNum() {
 }*/
 
 /*順位をつけたい場合*/
-void lottery(int all, int winner) {
+/*void lottery(int all, int winner) {
 	int i = 0;
 	int win = 1;                    //当選者順位を入れる変数
 
@@ -95,4 +95,30 @@ void lottery(int all, int winner) {
 			win += 1;               //当選順位をカウントアップ
 		}
 	}
+}*/
+
+void lottery(int all, int winner) {
+	int i = 0;
+	int a; //ソートする回数を数える変数
+	int ary[100]; //
+	int ary2 = 0; //ソートするための変数
+
+	for (; i < all; i++) {
+		ary[i] = i + 1;
+	}
+
+	for (a = 0; a < 100; a++) {
+		srand(time(NULL)); //乱数の初期化
+		int num = rand() % all + 1;
+		ary2 = ary[num-1];
+
+		srand(time(NULL));
+		int num2 = rand() % all + 1;
+		ary[num2] = ary2;
+	}
+
+	for (i = 1; i <= winner; i++) {
+		printf("%d等　%d番\n", i, ary[i]);
+	}
+
 }
