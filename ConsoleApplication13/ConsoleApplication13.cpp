@@ -6,9 +6,10 @@
 #include"stdlib.h"
 #include <time.h>
 
-
-static int all; //抽選に参加する人数
-static int winner; //当選する人数
+//抽選に参加する人数
+static int all; 
+//当選する人数
+static int winner; 
 
 int AllNum();
 int WinnerNum();
@@ -79,17 +80,21 @@ int WinnerNum() {
 /*順位をつけたい場合*/
 /*void lottery(int all, int winner) {
 	int i = 0;
-	int win = 1;                    //当選者順位を入れる変数
+	//当選者順位を入れる変数
+	int win = 1;                    
 
-	int a[100] = { 0 };             //0で初期化した大きな配列をつくる
-
-	for (win = 1; win <= winner;) {  //当選予定人数分、乱数であたりを出す
-
+	//0で初期化した大きな配列をつくる
+	int a[100] = { 0 };             
+	
+	//当選予定人数分、乱数であたりを出す
+	for (win = 1; win <= winner;) {  
 		srand(time(NULL));
 
-		int num = rand() % all + 1; //当選者の番号を乱数で決定、乱数を入れる変数をnumとする
+		//当選者の番号を乱数で決定、乱数を入れる変数をnumとする
+		int num = rand() % all + 1; 
 
-		if (a[num - 1] == 0) {      //乱数のひとつ小さい数字の配列の箇所に0が入っている場合
+		//乱数のひとつ小さい数字の配列の箇所に0が入っている場合
+		if (a[num - 1] == 0) {      
 			a[num - 1] = num;       //その値を格納する
 			printf("%d等　%d番\n", win, num);
 			win += 1;               //当選順位をカウントアップ
@@ -98,23 +103,24 @@ int WinnerNum() {
 }*/
 
 void lottery(int all, int winner) {
+	//配列に数字を入れるときカウントアップにつかう変数
 	int i = 0;
-	int a; //ソートする回数を数える変数
-	int ary[100]; //
+	//ソートする回数を数える変数
+	int a; 
+	int ary[100]; 
 	int ary2 = 0; //ソートするための変数
 
 	for (; i < all; i++) {
 		ary[i] = i + 1;
 	}
 
-	for (a = 0; a < 100; a++) {
-		srand(time(NULL)); //乱数の初期化
+	//ソートする：入れ替える二つの数字を乱数で生成し、入れ替えを100回行うものとする
+	for (a = 0; a < all; a++) {
+		srand((unsigned)time(NULL)); //乱数の初期化
 		int num = rand() % all + 1;
-		ary2 = ary[num-1];
-
-		srand(time(NULL));
-		int num2 = rand() % all + 1;
-		ary[num2] = ary2;
+		ary2 = ary[a];
+		ary[a] = ary[num];
+		ary[num] = ary2;
 	}
 
 	for (i = 1; i <= winner; i++) {
