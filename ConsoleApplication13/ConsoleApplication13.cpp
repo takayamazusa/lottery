@@ -114,17 +114,19 @@ void lottery(int all, int winner) {
 		ary[i] = i + 1;
 	}
 
+	srand((unsigned)time(NULL)); //乱数の初期化
+
 	//ソートする
 	for (a = 0; a < all; a++) {
-		srand((unsigned)time(NULL)); //乱数の初期化
+		
 		int num = rand() % all + 1;
 		ary2 = ary[a];
 		ary[a] = ary[num];
 		ary[num] = ary2;
 	}
 
-	for (i = 1; i <= winner; i++) {
-		printf("%d等　%d番\n", i, ary[i]);
+	for (i = 0; i < winner; i++) {
+		printf("%d等　%d番\n", i+1, ary[i]);
 	}
 
 }
