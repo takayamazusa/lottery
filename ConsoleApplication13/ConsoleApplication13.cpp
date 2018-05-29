@@ -114,7 +114,7 @@ void lottery(int all, int winner) {
 		ary[i] = i + 1;
 	}
 
-	//ソートする：入れ替える二つの数字を乱数で生成し、入れ替えを100回行うものとする
+	//ソートする
 	for (a = 0; a < all; a++) {
 		srand((unsigned)time(NULL)); //乱数の初期化
 		int num = rand() % all + 1;
